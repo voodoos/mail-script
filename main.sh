@@ -7,7 +7,8 @@ if [[ $EUID -ne 0 ]]; then
    exit 1
 fi
 
-DO="RSPAMD"
+DO="SSL"
+
 
 # -1 We get the config vars :
 source subscripts/vars.sh
@@ -63,9 +64,13 @@ then
 fi
 
 # 6 - Let's Encrypt
-if [[ ${DO} == *"ALL"* ]]
+if [[ ${DO} == *"ALL"* ]] || [[ ${DO} == *"SSL"* ]]
 then
     bash subscripts/print.sh "Installing acme.sh with a certificate for domain root"
+    
+    # Generating secure DHE key :
+    echo 'Generating secure DHE key.'
+    (cd /etc/ssl/certs && openssl dhparam -dsaparam -out dhparam.pem 4096)
     
     if [ ${DO} == *"SIGNED"* ]
     then

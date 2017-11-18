@@ -14,7 +14,7 @@ server {
        
        ssl_certificate        /etc/ssl/certs/CERTHERE;
        ssl_certificate_key  /etc/ssl/keys/KEYHERE;
-
+       include /etc/nginx/includes/ssl.conf;
        
 
        root /srv/nginx/default;

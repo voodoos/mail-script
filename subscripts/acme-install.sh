@@ -23,3 +23,5 @@ mkdir /etc/ssl/keys
 --key-file       /etc/ssl/keys/mail.pem  \
 --fullchain-file /etc/ssl/certs/mail.pem \
 --reloadcmd     "service nginx force-reload"
+
+

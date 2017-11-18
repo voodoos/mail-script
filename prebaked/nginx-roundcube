@@ -7,6 +7,7 @@ server {
        ssl_certificate        /etc/ssl/certs/nginx-cyclo.pe.pem;
        ssl_certificate_key  /etc/ssl/keys/nginx-cyclo.pe.pem;
 
+       include /etc/nginx/includes/ssl.conf;
 
        root /srv/nginx/mail/public_html;
 
