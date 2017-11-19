@@ -11,4 +11,4 @@ postconf -e "recipient_canonical_classes = envelope_recipient,header_recipient"
 # Start SRS daemon
 sudo service postsrsd restart
 #Reload postfix
-sudo service postfix reload
+sudo service postfix restart

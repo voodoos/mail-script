@@ -8,7 +8,7 @@ apt-get -q update && apt-get -qqy install php-mysql php-curl php-mcrypt php-sqli
 echo "Cloning Roundcube..."
 
 git clone https://github.com/roundcube/roundcubemail.git ${RC_ROOT}
-$(cd ${RC_ROOT} && git checkout release-1.3)
+(cd ${RC_ROOT} && git checkout release-1.3)
 
 # Installing js dependencies :
 ${RC_ROOT}/bin/install-jsdeps.sh

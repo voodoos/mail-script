@@ -1,8 +1,9 @@
 export TODO_FILE=TODO
+export LOG=install.log
 
 export WEB_PATH=/srv/nginx
-export DEFAULT_VSERV_ROOT=WEB_PATH/default
-export MAIL_VSERV_ROOT=WEB_PATH/mail
+export DEFAULT_VSERV_ROOT=${WEB_PATH}/default
+export MAIL_VSERV_ROOT=${WEB_PATH}/mail
 
 #############
 #  SYSTEM VARS

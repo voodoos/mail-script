@@ -44,4 +44,15 @@ server {
 	       fastcgi_pass unix:/run/php/php7.0-fpm.sock;
         }
 
+    location /rspamd/ {
+        proxy_pass       http://localhost:11334/;
+
+        proxy_set_header Host      $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For "";
+    }
+    
+    location /grafana/ {
+        proxy_pass http://localhost:3000/;
+    }
 }

@@ -7,7 +7,7 @@ if [[ $EUID -ne 0 ]]; then
    exit 1
 fi
 
-DO="SSL"
+DO="PROMETHEUS"
 
 
 # -1 We get the config vars :
@@ -52,8 +52,8 @@ fi
 if [[ ${DO} == *"ALL"* ]] || [[ ${DO} == *"NGINX"* ]]
 then
     bash subscripts/print.sh "Installing nginx"
-    sudo bash subscripts/nginx-install.sh
-    sudo bash subscripts/nginx-f2b.sh
+    bash subscripts/nginx-install.sh
+    bash subscripts/nginx-f2b.sh
 fi
 
 # 5 - Adminer
@@ -117,7 +117,7 @@ fi
 if [[ ${DO} == *"ALL"* ]] || [[ ${DO} == *"MAIL"* ]] || [[ ${DO} == *"SRS"* ]]
 then
     bash subscripts/print.sh "Installing  postSRSd"
-    bash subscripts/srs-install.sh
+    bash subscripts/srs-config.sh
 fi
 
 # 10 - Roundcube
@@ -138,8 +138,16 @@ then
 fi
 
 echo "Starting postfix and dovecot..."
-sudo service postfix start
-sudo service dovecot start
+sudo service postfix restart
+sudo service dovecot restart
+
+# 12 Prometheus and grafana :
+if [[ ${DO} == *"ALL"* ]] || [[ ${DO} == *"PROMETHEUS"* ]]
+then
+    bash subscripts/print.sh "Installing Prometheus and Grafana"
+    bash subscripts/prometheus-install.sh
+fi
+
 
 # # Test you should run
 echo "You should check firewall rules with sudo ufw status verbose"

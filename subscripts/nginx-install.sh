@@ -18,6 +18,7 @@ sed -i.bak 's/# server_tokens off;/server_tokens off;/' /etc/nginx/nginx.conf
 
 
 # Quick example site with phpinfo :
+echo "toto ${DOMAIN} ${WEB_ROOT} ${DEFAULT_VSERV_ROOT}"
 mkdir -p ${DEFAULT_VSERV_ROOT}
 cp prebaked/info-site /etc/nginx/sites-available/ 
 ln -s /etc/nginx/sites-available/info-site /etc/nginx/sites-enabled/info-site
