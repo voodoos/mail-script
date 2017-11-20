@@ -7,7 +7,7 @@ if [[ $EUID -ne 0 ]]; then
    exit 1
 fi
 
-DO="PROMETHEUS"
+DO="ALL"
 
 
 # -1 We get the config vars :
@@ -142,7 +142,7 @@ sudo service postfix restart
 sudo service dovecot restart
 
 # 12 Prometheus and grafana :
-if [[ ${DO} == *"ALL"* ]] || [[ ${DO} == *"PROMETHEUS"* ]]
+if [[ ${DO} == *"PROMETHEUS"* ]]
 then
     bash subscripts/print.sh "Installing Prometheus and Grafana"
     bash subscripts/prometheus-install.sh
