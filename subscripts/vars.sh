@@ -26,7 +26,7 @@ DOMAIN_EXT=
 export DOMAIN_NAME
 export DOMAIN_EXT
 export DOMAIN=${DOMAIN_NAME}.${DOMAIN_EXT}
-export MAILDOMAIN=mail.${DOMAIN
+export MAILDOMAIN=mail.${DOMAIN}
 export FQDN=${HOSTNAME}.${DOMAIN}
 
 #############
