@@ -8,8 +8,18 @@ wget -O -  https://get.acme.sh | sh
 # Issuing certificate for main domain :
 echo $FQDN
 
-/root/.acme.sh/acme.sh --issue -nginx -d $FQDN #-w /srv/nginx
-/root/.acme.sh/acme.sh --issue -nginx -d mail.$FQDN #-w /srv/nginx
+# Initializing crontab
+(crontab -l)
+
+# Stopping Nginx to allow standalone server magic
+service nginx stop
+
+echo "Issuing cert for $FQDN"
+/root/.acme.sh/acme.sh --issue -d $FQDN --standalone  #-w /srv/nginx/default
+echo "Issuing cert for mail.$FQDN"
+/root/.acme.sh/acme.sh --issue -d mail.$FQDN --standalone  #-w /srv/nginx/default
+
+service nginx start
 
 mkdir /etc/ssl/keys
 
@@ -19,7 +29,7 @@ mkdir /etc/ssl/keys
 --reloadcmd     "service nginx force-reload"
 
 
-/root/.acme.sh/acme.sh --install-cert -d $FQDN  \
+/root/.acme.sh/acme.sh --install-cert -d "mail.${FQDN}"  \
 --key-file       /etc/ssl/keys/mail.pem  \
 --fullchain-file /etc/ssl/certs/mail.pem \
 --reloadcmd     "service nginx force-reload"

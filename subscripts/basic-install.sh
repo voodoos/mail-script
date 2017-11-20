@@ -1,3 +1,7 @@
+echo "Locale config"
+locale-gen "en_US.UTF-8"
+dpkg-reconfigure locales
+
 echo "Setting up hostname..."
 hostnamectl set-hostname $1 #.${DOMAIN_NAME}.${DOMAIN_EXT}
 sed -i.bak "s/localhost/localhost $1 $1.${DOMAIN_NAME}.${DOMAIN_EXT} mail.${DOMAIN_NAME}.${DOMAIN_EXT}/" /etc/hosts

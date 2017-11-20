@@ -1,7 +1,7 @@
 server {
     listen      80;
     listen [::]:80;
-    server_name _;
+    server_name SERVNAMEHERE mail.SERVNAMEHERE;
     return 301 https://$server_name$request_uri;
 }
 

@@ -10,8 +10,8 @@ touch /etc/postfix/main.cf
 postconf \
   myhostname=${HOSTNAME}.${FQDN} \
   mydomain=${FQDN} \
-  myorigin='$mydomain' \
-  mydestination='$myhostname, mail.localhost, localhost' \
+  myorigin='/etc/mailname' \
+  mydestination='localhost' \
   mynetworks_style=host \
 \
   relay_domains='' \
@@ -89,7 +89,7 @@ echo "Testing postfix/mysql conf should print" ${FQDN} ":"
 postmap -q ${FQDN} mysql:/etc/postfix/mysql-virtual-mailbox-domains.cf
 
 # master.cf (enabling submission)
-postconf -Me submission/inet='submission inet n - y - - smtp'
+postconf -Me submission/inet='submission inet n - y - - smtpd'
 postconf -P \
 	 "submission/inet/syslog_name=postfix/submission" \
 	 "submission/inet/smtpd_tls_security_level=encrypt" \

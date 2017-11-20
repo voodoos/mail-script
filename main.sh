@@ -72,7 +72,7 @@ then
     echo 'Generating secure DHE key.'
     (cd /etc/ssl/certs && openssl dhparam -dsaparam -out dhparam.pem 4096)
     
-    if [ ${DO} == *"SIGNED"* ]
+    if [[ ${DO} == *"SIGNED"* ]]
     then
 	bash subscripts/acme-install.sh $DOMAIN_NAME $DOMAIN_EXT
     else
